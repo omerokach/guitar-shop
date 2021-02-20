@@ -32,3 +32,21 @@ ClassicGuitar.prototype.detectSound = function(sound){
         return "not a Bass or Electronic guitar";
     }
 }
+function ElectricGuitar(manufactureYear, brand, price, longNeck){
+    ClassicGuitar.call(this, manufactureYear, brand, price);
+    this.used = false;  
+    this.longNeck = longNeck;
+    this.used = false;  
+    this.play = function(){
+        if(!this.used){
+            this.used = true;
+            this.price = price - (price * .10);
+        }
+        return "🎸🎸🎸";    
+    };
+}
+ElectricGuitar.prototype = Object.create(ClassicGuitar.prototype);
+Object.defineProperty(ElectricGuitar.prototype, 'constructor', {
+    value: ElectricGuitar,
+    enumerable: false, // so that it does not appear in 'for in' loop
+    writable: true });
